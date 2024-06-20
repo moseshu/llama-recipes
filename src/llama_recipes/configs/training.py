@@ -10,7 +10,7 @@ class train_config:
     tokenizer_name: str=None
     enable_fsdp: bool=False
     low_cpu_fsdp: bool=False
-    run_validation: bool=True
+    run_validation: bool=False
     batch_size_training: int=4
     batching_strategy: str="packing" #alternative: padding
     context_length: int=4096
@@ -48,3 +48,5 @@ class train_config:
     flop_counter_start: int = 3 # The step to start profiling, default is 3, which means after 3 steps of warmup stage, the profiler will start to count flops.
     use_profiler: bool = False # Enable pytorch profiler, can not be used with flop counter at the same time.
     profiler_dir: str = "PATH/to/save/profiler/results" # will be used if using profiler
+    checkpoint_model_name: str = "llama-checkpoint"
+    freeze_strategy: int = 1 # 冻结层的策略，自定义，比如等于3时，只冻结3、6、9......层，层数从1开始计算，而非0

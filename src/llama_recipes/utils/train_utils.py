@@ -16,7 +16,8 @@ import torch.distributed as dist
 from torch.distributed.fsdp import StateDictType
 from torch.distributed.fsdp.sharded_grad_scaler import ShardedGradScaler
 from tqdm import tqdm
-from transformers import LlamaTokenizer
+# from transformers import LlamaTokenizer
+from llama_recipes.import_llama import LlamaTokenizer, LlamaForCausalLM
 import json
 
 
@@ -403,6 +404,12 @@ def check_frozen_layers_peft_model(model):
             for name, param in layer.named_parameters():
                 print(f"Layer {i}, parameter {name}: requires_grad = {param.requires_grad}")
 
+#add freeze layer support qwen,custom your freeze policy
+def freeze_transformer_layers_for_qwen(model:LlamaForCausalLM, num_layer:int, strategy:int):
+   for i, layer in enumerate(model.transformer.h, start=1):
+            if i < num_layer and i%strategy==0: # 冻结num_layer层以下且是strategy倍数的层
+                for param in layer.parameters():
+                    param.requires_grad = False
 
 def setup():
     """Initialize the process group for distributed training"""
@@ -497,7 +504,7 @@ def get_policies(cfg, rank):
                 print(f"FP16 enabled")
         else:
             print(f"bFloat16 support not present. Using FP32, and not mixed precision")
-    wrapping_policy = get_llama_wrapper()
+    wrapping_policy = get_llama_wrapper(cfg)
     return mixed_precision_policy, wrapping_policy
 
 def save_train_params(train_config, fsdp_config, rank):

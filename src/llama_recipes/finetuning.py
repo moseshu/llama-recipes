@@ -16,11 +16,20 @@ from torch.distributed.fsdp import (
 
 from torch.distributed.fsdp.fully_sharded_data_parallel import CPUOffload
 from torch.optim.lr_scheduler import StepLR
-from transformers import (
-    AutoTokenizer,
+# from transformers import (
+#     AutoTokenizer,
+#     LlamaForCausalLM,
+#     LlamaConfig,
+# )
+
+from llama_recipes.import_llama import (
     LlamaForCausalLM,
+    LlamaDecoderLayer,
     LlamaConfig,
+    LlamaTokenizer,
 )
+from transformers import AutoTokenizer
+
 from transformers.models.llama.modeling_llama import LlamaDecoderLayer
 
 from llama_recipes.configs import fsdp_config as FSDP_CONFIG
@@ -207,25 +216,32 @@ def main(**kwargs):
     dataset_config = generate_dataset_config(train_config, kwargs)
 
      # Load and preprocess the dataset for training and validation
+    # dataset_train = get_preprocessed_dataset(
+    #     tokenizer,
+    #     dataset_config,
+    #     split="train",
+    # )
+
+    # if not train_config.enable_fsdp or rank == 0:
+    #     print(f"--> Training Set Length = {len(dataset_train)}")
+
+    # dataset_val = get_preprocessed_dataset(
+    #     tokenizer,
+    #     dataset_config,
+    #     split="test",
+    # )
+    
+    #custom dataset loader
     dataset_train = get_preprocessed_dataset(
         tokenizer,
         dataset_config,
-        split="train",
-    )
-
-    if not train_config.enable_fsdp or rank == 0:
-        print(f"--> Training Set Length = {len(dataset_train)}")
-
-    dataset_val = get_preprocessed_dataset(
-        tokenizer,
-        dataset_config,
-        split="test",
+        split="",
     )
     if not train_config.enable_fsdp or rank == 0:
-        print(f"--> Validation Set Length = {len(dataset_val)}")
-
-    if train_config.batching_strategy == "packing":
-        dataset_train = ConcatDataset(dataset_train, chunk_size=train_config.context_length)
+        print(f"--> Validation Set Length = {len(dataset_train)}")
+    #use custom packing dataset in custom_dataset.py
+    # if train_config.batching_strategy == "packing":
+    #     dataset_train = ConcatDataset(dataset_train, chunk_size=train_config.context_length)
 
     train_dl_kwargs = get_dataloader_kwargs(train_config, dataset_train, tokenizer, "train")
 
@@ -264,6 +280,13 @@ def main(**kwargs):
             variance_dtype=torch.bfloat16,
             use_kahan_summation=False,
             weight_decay=train_config.weight_decay,
+        )
+    
+    elif fsdp_config.optimizer=="PagedAdam32bit":
+        from bitsandbytes.optim import PagedAdam32bit
+        optimizer = PagedAdam32bit(
+            model.parameters(),
+            lr=train_config.lr
         )
     else:
         optimizer = optim.AdamW(

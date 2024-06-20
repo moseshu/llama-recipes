@@ -29,6 +29,9 @@ class alpaca_dataset:
 @dataclass
 class custom_dataset:
     dataset: str = "custom_dataset"
-    file: str = "examples/custom_dataset.py"
+    file: str = "custom_dataset.py"
     train_split: str = "train"
     test_split: str = "validation"
+    data_path: str = "data"
+    test_size:float = 0.001
+    max_seq_length: int = 16384
