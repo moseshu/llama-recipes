@@ -1,61 +1,0 @@
-W0620 03:37:50.233000 139696475408192 torch/distributed/run.py:757] 
-W0620 03:37:50.233000 139696475408192 torch/distributed/run.py:757] *****************************************
-W0620 03:37:50.233000 139696475408192 torch/distributed/run.py:757] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-W0620 03:37:50.233000 139696475408192 torch/distributed/run.py:757] *****************************************
-model type is llama
-model type is llama
-Clearing GPU cache for all ranks
---> Running with torch dist debug set to detail
-Loading checkpoint shards:   0%|                                                                                        | 0/4 [00:00<?, ?it/s]Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
-trainable params: 167,772,160 || all params: 8,198,033,408 || trainable%: 2.0465
-wrap granularity: LlamaDecoderLayer
-Loading checkpoint shards:  25%|████████████████████                                                            | 1/4 [00:03<00:11,  3.70s/it]Loading checkpoint shards:  50%|████████████████████████████████████████                                        | 2/4 [00:07<00:07,  3.61s/it]Loading checkpoint shards:  75%|████████████████████████████████████████████████████████████                    | 3/4 [00:10<00:03,  3.58s/it]Loading checkpoint shards: 100%|████████████████████████████████████████████████████████████████████████████████| 4/4 [00:11<00:00,  2.52s/it]Loading checkpoint shards: 100%|████████████████████████████████████████████████████████████████████████████████| 4/4 [00:11<00:00,  2.92s/it]
-Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
---> Model /kefu-nas/moses/llama/llama_weight/Llama-3-8B-base-v3
-
---> /kefu-nas/moses/llama/llama_weight/Llama-3-8B-base-v3 has 8030.261248 Million params
-
-trainable params: 167,772,160 || all params: 8,198,033,408 || trainable%: 2.0465
-bFloat16 enabled for mixed precision - using bfSixteen policy
-wrap granularity: LlamaDecoderLayer
---> applying fsdp activation checkpointing...
-load dataset file:/kefu-nas/moses/llama/data/traindata/tmp4/wenwendajia-sft7k.json
-Map (num_proc=8):   0%|                                                                                       | 0/7000 [00:00<?, ? examples/s]Map (num_proc=8):  12%|█████████▍                                                                 | 875/7000 [00:00<00:01, 3998.38 examples/s]Map (num_proc=8): 100%|█████████████████████████████████████████████████████████████████████████| 7000/7000 [00:00<00:00, 25711.35 examples/s]Map (num_proc=8): 100%|█████████████████████████████████████████████████████████████████████████| 7000/7000 [00:00<00:00, 17477.62 examples/s]
---> applying fsdp activation checkpointing...
-/usr/local/lib/python3.10/dist-packages/torch/cuda/memory.py:330: FutureWarning: torch.cuda.reset_max_memory_allocated now calls torch.cuda.reset_peak_memory_stats, which resets /all/ peak memory stats.
-  warnings.warn(
-Training Epoch: 1:   0%|[34m                                                                                                [0m| 0/2 [00:00<?, ?it/s][0mload dataset file:/kefu-nas/moses/llama/data/traindata/tmp4/wenwendajia-sft7k.json
---> Validation Set Length = 86
-/usr/local/lib/python3.10/dist-packages/torch/cuda/memory.py:330: FutureWarning: torch.cuda.reset_max_memory_allocated now calls torch.cuda.reset_peak_memory_stats, which resets /all/ peak memory stats.
-  warnings.warn(
-Training Epoch: 1:   0%|[34m                                                                                                [0m| 0/2 [00:00<?, ?it/s][0mTraining Epoch: 1/3, step 0/43 completed (loss: 0.33662351965904236):   0%|[34m                                             [0m| 0/2 [00:13<?, ?it/s][0mTraining Epoch: 1/3, step 0/43 completed (loss: 0.339209645986557):   0%|[34m                                               [0m| 0/2 [00:10<?, ?it/s][0mTraining Epoch: 1/3, step 1/43 completed (loss: 0.3459284007549286):   0%|[34m                                              [0m| 0/2 [00:20<?, ?it/s][0mTraining Epoch: 1/3, step 1/43 completed (loss: 0.3330865800380707):   0%|[34m                                              [0m| 0/2 [00:17<?, ?it/s][0mTraining Epoch: 1/3, step 2/43 completed (loss: 0.33683091402053833):   0%|[34m                                             [0m| 0/2 [00:27<?, ?it/s][0mTraining Epoch: 1/3, step 2/43 completed (loss: 0.34015408158302307):   0%|[34m                                             [0m| 0/2 [00:24<?, ?it/s][0mTraining Epoch: 1/3, step 3/43 completed (loss: 0.34200334548950195):   0%|[34m                                             [0m| 0/2 [00:34<?, ?it/s][0mTraining Epoch: 1/3, step 3/43 completed (loss: 0.34585946798324585):   0%|[34m                                             [0m| 0/2 [00:31<?, ?it/s][0mTraining Epoch: 1/3, step 4/43 completed (loss: 0.3353356719017029):   0%|[34m                                              [0m| 0/2 [00:38<?, ?it/s][0mTraining Epoch: 1/3, step 4/43 completed (loss: 0.3335094153881073):   0%|[34m                                              [0m| 0/2 [00:41<?, ?it/s][0mTraining Epoch: 1/3, step 5/43 completed (loss: 0.33648452162742615):   0%|[34m                                             [0m| 0/2 [00:44<?, ?it/s][0mTraining Epoch: 1/3, step 5/43 completed (loss: 0.3390752673149109):   0%|[34m                                              [0m| 0/2 [00:48<?, ?it/s][0mTraining Epoch: 1/3, step 6/43 completed (loss: 0.33633434772491455):   0%|[34m                                             [0m| 0/2 [00:54<?, ?it/s][0mTraining Epoch: 1/3, step 6/43 completed (loss: 0.33966314792633057):   0%|[34m                                             [0m| 0/2 [00:51<?, ?it/s][0mTraining Epoch: 1/3, step 7/43 completed (loss: 0.35412025451660156):   0%|[34m                                             [0m| 0/2 [00:58<?, ?it/s][0mTraining Epoch: 1/3, step 7/43 completed (loss: 0.33193469047546387):   0%|[34m                                             [0m| 0/2 [01:01<?, ?it/s][0mW0620 03:39:35.344000 139696475408192 torch/distributed/elastic/multiprocessing/api.py:851] Sending process 460449 closing signal SIGTERM
-E0620 03:39:35.608000 139696475408192 torch/distributed/elastic/multiprocessing/api.py:826] failed (exitcode: -9) local_rank: 0 (pid: 460448) of binary: /usr/bin/python3
-Traceback (most recent call last):
-  File "/usr/local/bin/torchrun", line 8, in <module>
-    sys.exit(main())
-  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
-    return f(*args, **kwargs)
-  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 879, in main
-    run(args)
-  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 870, in run
-    elastic_launch(
-  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 132, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 263, in launch_agent
-    raise ChildFailedError(
-torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
-=======================================================
-finetuning.py FAILED
--------------------------------------------------------
-Failures:
-  <NO_OTHER_FAILURES>
--------------------------------------------------------
-Root Cause (first observed failure):
-[0]:
-  time      : 2024-06-20_03:39:35
-  host      : llama2-ift-moses-dbb4bbddb-gckt2
-  rank      : 0 (local_rank: 0)
-  exitcode  : -9 (pid: 460448)
-  error_file: <N/A>
-  traceback : Signal 9 (SIGKILL) received by PID 460448
-=======================================================
