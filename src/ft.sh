@@ -6,6 +6,7 @@ data_path=/kefu-nas/moses/llama/data/traindata/tmp4
 #--fsdp_config.pure_bf16 \
 #[q_proj,k_proj,v_proj,o_proj,gate_proj,down_proj,up_proj]
 # set NCCL_DEBUG=INFO
+#FT_MODEL_TYPE is [llama,mistral,mixtral,qwen]
 export FT_MODEL_TYPE='llama'
 #CUDA_VISIBLE_DEVICES=1,2 
 torchrun --nnodes 1 --nproc_per_node 8 \
