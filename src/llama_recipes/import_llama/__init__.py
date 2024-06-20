@@ -2,12 +2,7 @@ import os
 model = os.getenv('FT_MODEL_TYPE')
 model = str(model).lower()
 print(f"model type is {model}")
-if model=='qw':
-    from llama_recipes.qwen.modeling_qwen import QWenBlock as LlamaDecoderLayer
-    from llama_recipes.qwen.modeling_qwen import QWenLMHeadModel as LlamaForCausalLM
-    from llama_recipes.qwen.tokenization_qwen import QWenTokenizer as LlamaTokenizer
-    from llama_recipes.qwen.configuration_qwen import QWenConfig as LlamaConfig
-elif model=='mixtral':
+if model=='mixtral':
     from transformers import MixtralConfig as LlamaConfig
     from transformers import MixtralForCausalLM as LlamaForCausalLM
     from transformers import LlamaTokenizer
@@ -30,5 +25,7 @@ elif model=="llama":
     AutoTokenizer as LlamaTokenizer,
     LlamaConfig,)
     from transformers.models.llama.modeling_llama import LlamaDecoderLayer
+else:
+    raise Exception(f'请设置环境变量: "FT_MODEL_TYPE",其值必须属于llama,mistral,mixtral,qwen')
     
 
