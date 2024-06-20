@@ -1,11 +1,13 @@
 ### `how to fitune llama3,Mistral,qwen?`
 ```
 sh ft.sh
-data format is like
-put your data in a dir,named with json or jsonl file
+
+the data format is like
+
 {"conversations":[{"role":"system","content":"You are a helpful, respectful and honest assistant.Help humman as much as you can."},{"role":"user","content":<user_message>},
 {"role":"assistant","content":<assistan_message>}]}
 ```
+put your data in a dir,named with json or jsonl file
 
 
 # Llama Recipes: Examples to get started using the Llama models from Meta
