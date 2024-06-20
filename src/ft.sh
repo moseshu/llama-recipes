@@ -1,5 +1,5 @@
 #!/bin/bash
-model_name=/kefu-nas/moses/llama/llama_weight/Llama-3-8B-base-v3
+model_name=Moses25/Moses25/Llama-3-8B-chat-32K
 # model_name=/kefu-nas/moses/qwen/Qwen1.5-14B-Chat
 data_path=/kefu-nas/moses/llama/data/traindata/tmp4
 #    --low_cpu_fsdp False \
@@ -8,7 +8,7 @@ data_path=/kefu-nas/moses/llama/data/traindata/tmp4
 # set NCCL_DEBUG=INFO
 export FT_MODEL_TYPE='llama'
 #CUDA_VISIBLE_DEVICES=1,2 
-CUDA_VISIBLE_DEVICES=6,7  torchrun --nnodes 1 --nproc_per_node 2 \
+torchrun --nnodes 1 --nproc_per_node 8 \
     finetuning.py \
     --enable_fsdp \
     --low_cpu_fsdp \
@@ -22,7 +22,7 @@ CUDA_VISIBLE_DEVICES=6,7  torchrun --nnodes 1 --nproc_per_node 2 \
     --num_epochs 3 \
     --gradient_accumulation_steps 16 \
     --fsdp_config.pure_bf16 \
-    --custom_dataset.max_seq_length 16384 \
+    --custom_dataset.max_seq_length 32768 \
     --batching_strategy padding \
     --lr 2e-5 \
     --run_validation False \
