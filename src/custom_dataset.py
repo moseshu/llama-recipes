@@ -151,16 +151,18 @@ You are a helpful, respectful and honest assistant.Help humman as much as you ca
     llama3_prompt="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n{instruction}<|eot_id|>"
     #for Mistral and llama2
     def apply_prompt_template(sample):
-        instruction = sample['instruction']
-        input = sample['input']
-        output = sample['output']
-        if input:
-            instruction = instruction + "\n" + input
+        #instruction = sample['instruction']
+        #input = sample['input']
+        #output = sample['output']
+        # if input:
+        #     instruction = instruction + "\n" + input
         
-        if output:
-            res = llama2_prompt.format_map({"instruction": instruction})+ " "+ output
-        else:
-            res = instruction
+        # if output:
+        #     res = llama2_prompt.format_map({"instruction": instruction})+ " "+ output
+        # else:
+        #     res = instruction
+        chat_template = tokenizer.chat_template
+        res = tokenizer.apply_chat_template(sample['conversations'],chat_template=chat_template,tokenize=False)
         if not res.endswith(tokenizer.eos_token):
             res = res + tokenizer.eos_token
             
@@ -173,16 +175,18 @@ You are a helpful, respectful and honest assistant.Help humman as much as you ca
         }
     # for llama3
     def apply_llama3_template(sample):
-        instruction = sample['instruction']
-        input = sample['input']
-        output = sample['output']
-        if input:
-            instruction = instruction + "\n" + input
+        # instruction = sample['instruction']
+        # input = sample['input']
+        # output = sample['output']
+        # if input:
+        #     instruction = instruction + "\n" + input
         
-        if output:
-            res = llama3_prompt.format_map({"instruction": instruction})+ "<|start_header_id|>assistant<|end_header_id|>\n\n"+ output
-        else:
-            res = instruction
+        # if output:
+        #     res = llama3_prompt.format_map({"instruction": instruction})+ "<|start_header_id|>assistant<|end_header_id|>\n\n"+ output
+        # else:
+        #     res = instruction
+        chat_template = tokenizer.chat_template
+        res = tokenizer.apply_chat_template(sample['conversations'],chat_template=chat_template,tokenize=False)
         if not res.endswith("<|eot_id|>"):
             res = res + "<|eot_id|>"
         if not res.startswith("<|begin_of_text|>"):
