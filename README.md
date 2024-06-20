@@ -1,4 +1,4 @@
-### `how to fitune llama3,Mistral,qwen?`
+### `How to fitune llama3,Mistral,qwen?`
 ```
 sh ft.sh
 
