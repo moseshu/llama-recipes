@@ -158,6 +158,7 @@ Contains modules which support the example recipes:
 | [utils](src/llama_recipes/utils/) | Utility files for:<br/> - `train_utils.py` provides training/eval loop and more train utils.<br/> - `dataset_utils.py` to get preprocessed datasets.<br/> - `config_utils.py` to override the configs received from CLI.<br/> - `fsdp_utils.py` provides FSDP  wrapping policy for PEFT methods.<br/> - `memory_utils.py` context manager to track different memory stats in train loop. |
 
 ### `how to fitune llama3,Mistral,qwen?`
+sh ft.sh 
 
 
 ## Contributing
