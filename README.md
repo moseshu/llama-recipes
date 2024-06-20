@@ -1,3 +1,13 @@
+### `how to fitune llama3,Mistral,qwen?`
+```
+sh ft.sh
+data format is like
+put your data in a dir,named with json or jsonl file
+{"conversations":[{"role":"system","content":"You are a helpful, respectful and honest assistant.Help humman as much as you can."},{"role":"user","content":<user_message>},
+{"role":"assistant","content":<assistan_message>}]}
+```
+
+
 # Llama Recipes: Examples to get started using the Llama models from Meta
 <!-- markdown-link-check-disable -->
 The 'llama-recipes' repository is a companion to the [Meta Llama 3](https://github.com/meta-llama/llama3) models. The goal of this repository is to provide a scalable library for fine-tuning Meta Llama models, along with some example scripts and notebooks to quickly get started with using the models in a variety of use-cases, including fine-tuning for domain adaptation and building LLM-based applications with Meta Llama and other tools in the LLM ecosystem. The examples here showcase how to run Meta Llama locally, in the cloud, and on-prem. [Meta Llama 2](https://github.com/meta-llama/llama) is also supported in this repository. We highly recommend everyone to utilize [Meta Llama 3](https://github.com/meta-llama/llama3) due to its enhanced capabilities.
@@ -157,8 +167,6 @@ Contains modules which support the example recipes:
 | [policies](src/llama_recipes/policies/) | Contains FSDP scripts to provide different policies, such as mixed precision, transformer wrapping policy and activation checkpointing along with any precision optimizer (used for running FSDP with pure bf16 mode). |
 | [utils](src/llama_recipes/utils/) | Utility files for:<br/> - `train_utils.py` provides training/eval loop and more train utils.<br/> - `dataset_utils.py` to get preprocessed datasets.<br/> - `config_utils.py` to override the configs received from CLI.<br/> - `fsdp_utils.py` provides FSDP  wrapping policy for PEFT methods.<br/> - `memory_utils.py` context manager to track different memory stats in train loop. |
 
-### `how to fitune llama3,Mistral,qwen?`
-sh ft.sh 
 
 
 ## Contributing
