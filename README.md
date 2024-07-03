@@ -6,7 +6,12 @@ the data format is like
 
 {"conversations":[{"role":"system","content":"You are a helpful, respectful and honest assistant.Help humman as much as you can."},{"role":"user","content":<user_message>},
 {"role":"assistant","content":<assistan_message>}]}
+
 ```
+train dataset
+[Instruction dataset](https://huggingface.co/datasets/Moses25/Instruct-dataset11M),
+Llama3 or Mistral
+[Model repo](https://huggingface.co/Moses25/Llama-3-8B-Instruct-V1.0),
 put your data in a dir,named with json or jsonl file
 
 
