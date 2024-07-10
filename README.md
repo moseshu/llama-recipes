@@ -1,4 +1,4 @@
-### `How to fitune llama3,Mistral,qwen?`
+### `How to fitune llama3,Mistral,qwen2?`
 ```
 sh ft.sh
 
@@ -11,7 +11,7 @@ the data format is like
 train dataset
 [Instruction dataset](https://huggingface.co/datasets/Moses25/Instruct-dataset11M),
 Llama3 or Mistral
-[Model repo](https://huggingface.co/Moses25/Llama-3-8B-Instruct-V1.0),
+[Model repo](https://huggingface.co/Moses25/Llama-3-8B-Instruct-V1.0),other repo is [Llama-Mistral-chat](https://github.com/moseshu/Llama-Mistral-chat)
 put your data in a dir,named with json or jsonl file
 
 
